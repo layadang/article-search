@@ -19,4 +19,9 @@ def scholarsearch():
     
     return None
 
-scholarsearch()
+for i in range( len(df.index) ):
+        if pd.isna(df.Link[i]):
+            new_link = scholarsearch(i)
+            df.at[i, 'Link'] = new_link if new_link else ''
+
+df.to_csv("articlestest_updated.csv", index=None, header=True)
